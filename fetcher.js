@@ -10,13 +10,13 @@ const fetchPage = function () {
     console.log(error);
     console.log(response.statusMessage, response.statusCode);
 
-    const readline = require('readline');
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout
-    })
-
     if (fs.existsSync(FILE_PATH + 'index.html')) {
+
+      const readline = require('readline');
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      })
 
       rl.question(`file already exists at ${FILE_PATH} overwrite?\n(y/n): `, (answer) => {
 
