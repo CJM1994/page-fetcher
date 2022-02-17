@@ -46,3 +46,6 @@ const write = function (body) {
 }
 
 fetchPage();
+
+// TEST
+// node fetcher.js www.example.edu ./
