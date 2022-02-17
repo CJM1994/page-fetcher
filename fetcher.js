@@ -18,20 +18,15 @@ const fetchPage = function () {
         output: process.stdout
       })
 
-      rl.question(`file already exists at ${FILE_PATH} overwrite?\n(y/n): `, (answer) => {
-
+      rl.question(`file already exists at ${FILE_PATH} overwrite?\n(y): `, (answer) => {
         if (answer === 'y') {
           write(body);
           console.log('file overwritten...')
           rl.close();
-        } else if (answer === 'n') {
-          console.log('cancelled file transfer...')
-          rl.close();
         } else {
-          console.log('please answer with y or n');
+          console.log('cancelled file transfer...')
           process.exit();
         }
-
       })
 
     } else write(body);
