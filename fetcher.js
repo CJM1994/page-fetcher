@@ -20,4 +20,22 @@ const fetchPage = function () {
   })
 }
 
-fetchPage();
+const write = function () {
+
+}
+
+// const prompt = function () {
+
+//   const readline = require('readline');
+//   const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+//   })
+
+//   rl.question(`file already exists at ${FILE_PATH}, would you like to overwrite? Y/N: `, (answer) => {
+//     if (answer === 'y' || answer === 'Y') {
+//       rl.close(() => { return true });
+//     }
+//   })
+
+// }
