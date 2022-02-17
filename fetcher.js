@@ -3,12 +3,14 @@ const FILE_PATH = process.argv[3];
 const request = require('request');
 const fs = require('fs');
 
+if (!fs.existsSync(FILE_PATH)) throw new Error('directory is invalid, check parameter 2 for fetcher.js');
+
 const fetchPage = function () {
 
   request(URL, (error, response, body) => {
 
-    console.log(error);
-    console.log(response.statusMessage, response.statusCode);
+    console.log('error: ' + error);
+    console.log('status message: ' + response.statusMessage, '/ status code: ' + response.statusCode);
 
     if (fs.existsSync(FILE_PATH + 'index.html')) {
 
@@ -21,7 +23,6 @@ const fetchPage = function () {
       rl.question(`file already exists at ${FILE_PATH} overwrite?\n(y): `, (answer) => {
         if (answer === 'y') {
           write(body);
-          console.log('file overwritten...')
           rl.close();
         } else {
           console.log('cancelled file transfer...')
