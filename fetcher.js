@@ -9,19 +9,19 @@ const fetchPage = function () {
 
     console.log(error);
     console.log(response.statusMessage, response.statusCode);
+    write(body);
 
-    fs.writeFile(FILE_PATH + 'index.html', body, err => {
-      if (err) {
-        console.error(err)
-        return
-      }
-      console.log(`file written to ${FILE_PATH}index.html (${body.length} bytes)`)
-    })
   })
 }
 
-const write = function () {
-
+const write = function (body) {
+  fs.writeFile(FILE_PATH + 'index.html', body, err => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log(`file written to ${FILE_PATH}index.html (${body.length} bytes)`)
+  })
 }
 
 // const prompt = function () {
@@ -39,3 +39,4 @@ const write = function () {
 //   })
 
 // }
+fetchPage();
