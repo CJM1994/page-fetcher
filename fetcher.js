@@ -9,7 +9,12 @@ const fetchPage = function () {
 
     console.log(error);
     console.log(response.statusMessage, response.statusCode);
-    write(body);
+
+    if (fs.existsSync(FILE_PATH + 'index.html')) {
+
+      // enter prompt here
+
+    } else write(body);
 
   })
 }
@@ -24,19 +29,20 @@ const write = function (body) {
   })
 }
 
-// const prompt = function () {
+const prompt = function () {
 
-//   const readline = require('readline');
-//   const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-//   })
+  const readline = require('readline');
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
 
-//   rl.question(`file already exists at ${FILE_PATH}, would you like to overwrite? Y/N: `, (answer) => {
-//     if (answer === 'y' || answer === 'Y') {
-//       rl.close(() => { return true });
-//     }
-//   })
+  rl.question(`file already exists at ${FILE_PATH}, would you like to overwrite? Y/N: `, (answer) => {
+    if (answer === 'y' || answer === 'Y') {
+      rl.close(() => { return true });
+    }
+  })
 
-// }
-fetchPage();
+}
+
+prompt();
