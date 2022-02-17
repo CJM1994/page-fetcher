@@ -10,9 +10,29 @@ const fetchPage = function () {
     console.log(error);
     console.log(response.statusMessage, response.statusCode);
 
+    const readline = require('readline');
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    })
+
     if (fs.existsSync(FILE_PATH + 'index.html')) {
 
-      // enter prompt here
+      rl.question(`file already exists at ${FILE_PATH} overwrite?\n(y/n): `, (answer) => {
+
+        if (answer === 'y') {
+          write(body);
+          console.log('file overwritten...')
+          rl.close();
+        } else if (answer === 'n') {
+          console.log('cancelled file transfer...')
+          rl.close();
+        } else {
+          console.log('please answer with y or n');
+          process.exit();
+        }
+
+      })
 
     } else write(body);
 
@@ -29,20 +49,4 @@ const write = function (body) {
   })
 }
 
-const prompt = function () {
-
-  const readline = require('readline');
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  })
-
-  rl.question(`file already exists at ${FILE_PATH}, would you like to overwrite? Y/N: `, (answer) => {
-    if (answer === 'y' || answer === 'Y') {
-      rl.close(() => { return true });
-    }
-  })
-
-}
-
-prompt();
+fetchPage();
